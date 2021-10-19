@@ -1,0 +1,32 @@
+<div class="col">
+<label class="col-sm-2 col-form-label">Book Name</label>
+<div class="col">
+    <input type="text" required 
+            class="form-control" 
+            id="bookName" 
+            [(ngModel)]="bookName"
+            ngModel #firstName="ngModel"
+            name="bookName"
+            placeholder="Enter Book Name" />
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">Book Name is required</div>
+</div>
+
+<label class="col-sm-2 col-form-label">Author Name</label>
+    <div class="col">
+        <input type="text" class="form-control" 
+            [(ngModel)]="bookAuthorName"
+            ngModel #authorName="ngModel" name="bookAuthorName" id="bookAuthorName"
+            placeholder="Enter Author Name" required />
+        <div class="alert alert-danger" *ngIf="authorName.touched && !authorName.valid">Author Name is required</div>
+    </div>
+</div>
+
+<button (click)="addBook()" *ngIf="book.bookID == 0" 
+        class="btn btn-primary float-right m-2"
+        [disabled]="authorName.errors || firstName.errors"
+        >Add</button>
+
+<button (click)="updateBook()" *ngIf="book.bookID != 0" class="btn btn-primary float-right m-2" 
+    [disabled]="authorName.errors || firstName.errors">
+    Update
+</button>
